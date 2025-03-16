@@ -1,0 +1,38 @@
+<div class="min-h-screen p-4 md:p-8">
+  <div class="max-w-4xl mx-auto mt-12">
+    <button class="flex items-center gap-2 mb-8 transition-color text-netflix-red hover:text-netflix-red/80" (click)="goBack()">
+    Go Back
+    </button>
+    @if (movie.hasValue()) {
+      @let movieData = movie.value();
+      <div class="grid gap-8 mt-12 md:grid-cols-2">
+        <img class="w-full rounded-lg" [src]="getImageUrl(movieData?.poster_path ?? null)" alt="{{ movieData?.title }} poster" />
+        <div>
+          <h1 class="mb-4 text-4xl font-bold">
+            {{ movieData?.title }}
+          </h1>
+          <p class="mb-4 text-gray-300">
+            {{ movieData?.overview }}
+          </p>
+          <div class="space-y-2">
+            <p>
+              <span class="font-bold">
+                Release Date:
+              </span>
+              {{ movieData?.release_date | date }}
+            </p>
+            <p>
+              <span class="font-bold">
+                Vote Average:
+              </span>
+              {{ movieData?.vote_average | number: '1.1-1' }} / 10
+            </p>
+            
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+</div>
+
